@@ -143,3 +143,12 @@ function App(){
 ``解决办法：放在组件对应的虚拟节点对象上``
 
 ![image.png](https://upload-images.jianshu.io/upload_images/1181204-e3bd62558e75c7f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+# 总结
+- 每个函数组件对应一个React节点
+- 每个节点保存着state和index
+- useState会读取state[index]
+- index 由useState出现的顺序决定
+- setState会修改state,并触发更新
+``注意：这里对React的实现做了简化，React节点应该是FiberNode，_state的真实名称是memorizedState，index的实现则用到了链表，有兴趣的可以自行学习``
+[阅读源码后，来讲讲React Hooks是怎么实现的 - 掘金](https://juejin.im/post/5bdfc1c4e51d4539f4178e1f)
