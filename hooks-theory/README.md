@@ -32,3 +32,32 @@ function App(){
 ``useState肯定会从x读取n的最新值``
 - x
 ``每个组件有自己的数据x，我们将其命名为state``
+
+# 尝试自己实现一个React.useState
+```
+let _state //全局_state用来存储state的值，避免重新渲染的时候被myUseState重置为初始值
+const myUseState = initialValue => {
+	_state = _state === undefined ? initialValue : _state
+	const setState = (newValue) => {
+		_state = newValue
+		render()
+	}
+	return [_state, setState]
+}
+
+const render = () => {
+	ReactDOM.render(<App1 />, document.getElementById('root'))
+}
+
+function App1(){
+	const [n, setN] = myUseState(0)
+	return (
+		<div className='App'>
+			<p>{n}</p>
+			<p>
+				<button onClick={() => setN(n + 1)}>+1</button>
+			</p>
+		</div>
+	)
+}
+```
