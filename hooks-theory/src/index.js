@@ -36,16 +36,29 @@ function App1(){
 	)
 }
 
-// function App(){
-// 	console.log('app运行了')  //说明点击按钮setN会再次调用app()，重新渲染组建
-// 	const [n, setN] = React.useState(0)
-// 	return (
-// 		<div className='App'>
-// 			<p>{n}</p>
-// 			<p>
-// 				<button onClick={() => setN(n + 1)}>+1</button>
-// 			</p>
-// 		</div>
-// 	)
-// }
-ReactDOM.render(<App1 />, document.getElementById('root'))
+function App(){
+	console.log('app运行了')  //说明点击按钮setN会再次调用app()，重新渲染组建
+	const [n, setN] = React.useState(0)
+	let m, setM
+	if(n % 2 === 1){
+		/* error:
+			* React Hook "React.useState" is called conditionally.
+			* React Hooks must be called in the exact same order in every component render
+			*原因： 因为useState内部原理是把state声明成一个数组，需要顺序一一对应，如App1
+		 */
+		[m, setM] = React.useState(0)
+	}
+	return (
+		<div className='App'>
+			<p>{n}</p>
+			<p>
+				<button onClick={() => setN(n + 1)}>+1</button>
+			</p>
+			<p>{m}</p>
+			<p>
+				<button onClick={() => setM(m + 1)}>+1</button>
+			</p>
+		</div>
+	)
+}
+ReactDOM.render(<App />, document.getElementById('root'))
