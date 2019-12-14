@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 let _state = [] //全局_state用来存储state的值，避免重新渲染的时候被myUseState重置为初始值
-let index = 0
+let index = 0   //重要声明
 const myUseState = initialValue => {
-	const currentIndex = index
+	const currentIndex = index   //重要声明
 	_state[currentIndex] = _state[currentIndex] === undefined ? initialValue : _state[currentIndex]
 	const setState = newValue => {
 		_state[currentIndex] = newValue
@@ -15,7 +15,7 @@ const myUseState = initialValue => {
 }
 
 const render = () => {
-	index = 0
+	index = 0   //重要的重置
 	ReactDOM.render(<App1 />, document.getElementById('root'))
 }
 
