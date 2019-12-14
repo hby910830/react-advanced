@@ -61,3 +61,44 @@ function App1(){
 	)
 }
 ```
+
+# 如果一个组件用了两个useState怎么办？
+> 由于所以数据都放在_state里，所以会冲突。改进思路：把_state做成数组，比如_state = [0,0]
+
+# 多个useState
+```
+let _state = [] //全局_state用来存储state的值，避免重新渲染的时候被myUseState重置为初始值
+let index = 0
+const myUseState = initialValue => {
+	const currentIndex = index
+	_state[currentIndex] = _state[currentIndex] === undefined ? initialValue : _state[currentIndex]
+	const setState = newValue => {
+		_state[currentIndex] = newValue
+		render()
+	}
+	index += 1
+	return [_state[currentIndex], setState]
+}
+
+const render = () => {
+	index = 0
+	ReactDOM.render(<App1 />, document.getElementById('root'))
+}
+
+function App1(){
+	const [n, setN] = myUseState(0)
+	const [m, setM] = myUseState(0)
+	return (
+		<div className='App'>
+			<p>{n}</p>
+			<p>
+				<button onClick={() => setN(n + 1)}>+1</button>
+			</p>
+			<p>{m}</p>
+			<p>
+				<button onClick={() => setM(m + 1)}>+1</button>
+			</p>
+		</div>
+	)
+}
+```
