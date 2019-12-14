@@ -102,3 +102,44 @@ function App1(){
 	)
 }
 ```
+
+# _state数组方案缺点
+- useState调用顺序
+> 若第一次渲染时n是第一个，m是第二个，k是第三个
+> 则第二次渲染时必须保证顺序完全一致
+> 所以React不允许出现如下代码
+```
+function App(){
+	const [n, setN] = React.useState(0)
+	let m, setM
+	if(n % 2 === 1){
+		/* error:
+			* React Hook "React.useState" is called conditionally.
+			* React Hooks must be called in the exact same order in every component render
+			*原因： 因为useState内部原理是把state声明成一个数组，需要顺序一一对应，如上图
+		 */
+		[m, setM] = React.useState(0)
+	}
+	return (
+		<div className='App'>
+			<p>{n}</p>
+			<p>
+				<button onClick={() => setN(n + 1)}>+1</button>
+			</p>
+			<p>{m}</p>
+			<p>
+				<button onClick={() => setM(m + 1)}>+1</button>
+			</p>
+		</div>
+	)
+}
+```
+![image.png](https://upload-images.jianshu.io/upload_images/1181204-c0b5554beb79b9af.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+# 现在的代码还有一个问题
+- App用了_state和index，那其他组件用什么？
+``解决办法：给每个组件创建一个_state和index``
+- 又有问题：放在全局作用域里重名了怎么办？
+``解决办法：放在组件对应的虚拟节点对象上``
+
+![image.png](https://upload-images.jianshu.io/upload_images/1181204-e3bd62558e75c7f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
