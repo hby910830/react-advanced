@@ -186,3 +186,6 @@ function App(){
 
 - useRef
 > useRef不仅可以用于div,还能用于任意数据
+
+- useContext
+> useContext不仅能贯穿始终,还能贯穿不同组件
