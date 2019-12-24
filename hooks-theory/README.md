@@ -179,3 +179,10 @@ function App(){
 
 因为有多个n 
 ![image.png](https://upload-images.jianshu.io/upload_images/1181204-62bc7ae8da49274d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+# 贯穿始终的状态
+- 全局变量
+> 用window.xxx即可，但是太low
+
+- useRef
+> useRef不仅可以用于div,还能用于任意数据
