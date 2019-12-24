@@ -1,0 +1,12 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+.red button {
+  background: red;
+  color: white;
+}
+.blue button {
+  background: blue;
+  color: white;
+}

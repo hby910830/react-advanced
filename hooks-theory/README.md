@@ -68,20 +68,20 @@ function App1(){
 # 多个useState
 ```
 let _state = [] //全局_state用来存储state的值，避免重新渲染的时候被myUseState重置为初始值
-let index1 = 0
+let index = 0
 const myUseState = initialValue => {
-	const currentIndex = index1
+	const currentIndex = index
 	_state[currentIndex] = _state[currentIndex] === undefined ? initialValue : _state[currentIndex]
 	const setState = newValue => {
 		_state[currentIndex] = newValue
 		render()
 	}
-	index1 += 1
+	index += 1
 	return [_state[currentIndex], setState]
 }
 
 const render = () => {
-	index1 = 0
+	index = 0
 	ReactDOM.render(<App1 />, document.getElementById('root'))
 }
 
@@ -147,8 +147,8 @@ function App(){
 # 总结
 - 每个函数组件对应一个React节点
 - 每个节点保存着state和index
-- useState会读取state[index1]
-- index1 由useState出现的顺序决定
+- useState会读取state[index]
+- index 由useState出现的顺序决定
 - setState会修改state,并触发更新
 ``注意：这里对React的实现做了简化，React节点应该是FiberNode，_state的真实名称是memorizedState，index的实现则用到了链表，有兴趣的可以自行学习``
 [阅读源码后，来讲讲React Hooks是怎么实现的 - 掘金](https://juejin.im/post/5bdfc1c4e51d4539f4178e1f)
