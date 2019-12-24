@@ -215,6 +215,45 @@ function App(){
 - useContext
 > useContext不仅能贯穿始终,还能贯穿不同组件
 
+```
+const themeContext = React.createContext(null)
+
+function App() {
+	const [theme, setTheme] = React.useState('blue');
+	return (
+		<themeContext.Provider value={{theme, setTheme}}>
+			<div className={`App ${theme}`}>
+				<p>{theme}</p>
+				<div>
+					<ChildA/>
+				</div>
+				<div>
+					<ChildB/>
+				</div>
+			</div>
+		</themeContext.Provider>
+	);
+}
+
+function ChildA() {
+	const {setTheme} = React.useContext(themeContext)
+	return (
+		<div>
+			<button onClick={() => setTheme('red')}>red</button>
+		</div>
+	)
+}
+
+function ChildB() {
+	const {setTheme} = React.useContext(themeContext)
+	return (
+		<div>
+			<button onClick={() => setTheme('blue')}>blue</button>
+		</div>
+	)
+}
+```
+
 # 总结
 - 每次重新渲染，组件函数就会执行
 - 对应的所以state都会出现【分身】
