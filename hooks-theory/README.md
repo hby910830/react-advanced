@@ -189,3 +189,9 @@ function App(){
 
 - useContext
 > useContext不仅能贯穿始终,还能贯穿不同组件
+
+# 总结
+- 每次重新渲染，组件函数就会执行
+- 对应的所以state都会出现【分身】
+- 如果你不希望出现分身
+- 可以用useRef/useContext等
