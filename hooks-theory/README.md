@@ -152,3 +152,30 @@ function App(){
 - setState会修改state,并触发更新
 ``注意：这里对React的实现做了简化，React节点应该是FiberNode，_state的真实名称是memorizedState，index的实现则用到了链表，有兴趣的可以自行学习``
 [阅读源码后，来讲讲React Hooks是怎么实现的 - 掘金](https://juejin.im/post/5bdfc1c4e51d4539f4178e1f)
+
+
+# n 的分身
+```
+function App(){
+	const [n, setN] = React.useState(0)
+	const log = () => setTimeout(() => console.log(`n: ${n}`), 3000)
+	return (
+		<div className='App'>
+			<p>{n}</p>
+			<p>
+				<button onClick={() => setN(n + 1)}>+1</button>
+				<button onClick={log}>log</button>
+			</p>
+		</div>
+	)
+}
+```
+- 两种操作
+> 1.点击+1，再点击log --无bug，先加1再打印1
+>
+> 2.点击log，再点击+1 --有bug，加1再打印0
+>
+> 问题：为什么log出了旧数据
+
+因为有多个n 
+![image.png](https://upload-images.jianshu.io/upload_images/1181204-62bc7ae8da49274d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
