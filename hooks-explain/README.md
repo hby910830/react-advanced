@@ -40,3 +40,18 @@ function App(){
 ```
 - 注意事项2: 地址要变
 > setState(obj) 如果obj地址不变，那么React就认为数据没有变化，不会更新视图
+
+# gds
+- useState接受函数
+> const [state, setState] = useState(() => {return initialState})
+>
+> 该函数返回初始state，且只执行一次
+
+![image.png](https://upload-images.jianshu.io/upload_images/1181204-847c88e97b248f75.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+- setState接受函数
+> setN(i => i + 1)
+>
+> 如果你能接受这种形式，应该优先使用这种形式
+
+![image.png](https://upload-images.jianshu.io/upload_images/1181204-84c1120b032902ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
