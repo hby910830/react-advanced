@@ -41,7 +41,7 @@ function App(){
 - 注意事项2: 地址要变
 > setState(obj) 如果obj地址不变，那么React就认为数据没有变化，不会更新视图
 
-# gds
+# useState (续)
 - useState接受函数
 > const [state, setState] = useState(() => {return initialState})
 >
@@ -55,3 +55,19 @@ function App(){
 > 如果你能接受这种形式，应该优先使用这种形式
 
 ![image.png](https://upload-images.jianshu.io/upload_images/1181204-84c1120b032902ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+# useReducer
+- 用来践行Flux/Redux思想
+> 看代码，分四步走
+>
+> 一、创建初始值 initialState
+>
+> 二、创建所有操作 reducer(state, action);
+>
+> 三、传给 userReducer，得到读和写 API
+>
+> 四、调用写({type: '操作类型'})
+>
+> 总的来说，useReducer 是 useState 的复杂版
+
+![image.png](https://upload-images.jianshu.io/upload_images/1181204-04fcd86511ef9b18.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
