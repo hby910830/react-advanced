@@ -71,3 +71,19 @@ function App(){
 > 总的来说，useReducer 是 useState 的复杂版
 
 ![image.png](https://upload-images.jianshu.io/upload_images/1181204-04fcd86511ef9b18.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+# 如何代替 Redux
+- 步骤
+> 一、将数据集中在一个 store 对象
+> 
+> 二、将所有操作集中在 reducer
+> 
+> 三、创建一个 Context
+> 
+> 四、创建对数据的读取 API
+> 
+> 五、将第四步的内容放到第三步的 Context
+> 
+> 六、用 Context.Provider 将 Context 提供给所有组件
+> 
+> 七、各个组件用 useContext 获取读写API
