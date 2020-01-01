@@ -220,3 +220,18 @@ function ajax(path) {
 	});
 }
 ```
+
+# useContext
+- 上下文
+```
+全局变量是全局的上下文
+上下文是局部的全局变量
+```
+- 使用方法
+> 一、使用 C = createContext(initial) 创建上下文
+> 
+> 二、使用 <C.Provider> 圈定作用域
+> 
+> 三、在作用域内使用 useContext(C)来使用上下文
+
+![image.png](https://upload-images.jianshu.io/upload_images/1181204-9f80bc95febe2374.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
