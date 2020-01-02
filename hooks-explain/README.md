@@ -235,3 +235,11 @@ function ajax(path) {
 > 三、在作用域内使用 useContext(C)来使用上下文
 
 ![image.png](https://upload-images.jianshu.io/upload_images/1181204-9f80bc95febe2374.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+# useEffect
+- 副作用 (API 名字叫得不好)
+> 对环境的改变即为副作用，如修改 document.title
+> 
+> 但我们不一定非要把副作用放在 useEffect 里面
+> 
+> 实际上叫做 afterRender 更好，每次render后执行
