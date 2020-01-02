@@ -252,3 +252,8 @@ function ajax(path) {
 > 三、作为 componentWillUnmount 使用，通过 return
 >
 > 四、以上三种用途可同时存在
+
+![image.png](https://upload-images.jianshu.io/upload_images/1181204-c7f2534c71d2f2ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+- 特点
+> 如果同时存在多个 useEffect， 会按照出现次序执行
