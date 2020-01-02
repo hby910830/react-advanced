@@ -16,6 +16,17 @@ function App(){
 	useEffect(() => {
 		console.log('任何一个state变化时都会执行')
 	})
+	//组件消灭时 return 一个函数，函数里面写 componentWillUnmount 的操作
+	// useEffect(() => {
+	// 	const id = setInterval(() => {
+	// 		console.log('hi')
+	// 	}, 1000)
+	// 	return () => {
+	// 		setTimeout(() => {
+	// 			window.clearInterval(id)
+	// 		}, 10000)
+	// 	}
+	// })
 	return (
 		<div className="App">
 			<h1>n: {n}</h1>
