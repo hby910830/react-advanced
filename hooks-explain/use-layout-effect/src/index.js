@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect} from 'react';
+import React, {useState, useEffect, useLayoutEffect, useRef} from 'react';
 import ReactDOM from 'react-dom';
 
 function App() {
@@ -16,4 +16,28 @@ function App() {
 	);
 }
 
-ReactDOM.render(<App/>, document.getElementById('root'));
+function App1(){
+	const [n, setN] = useState(0)
+	const time = useRef(null)
+	const onClick = ()=>{
+		setN(i=>i+1)
+		time.current = performance.now()
+	}
+	useLayoutEffect(()=>{ 
+		if(time.current){
+			console.log(performance.now() - time.current) //大概是0.7ms
+		}
+	})
+	useEffect(()=>{
+		if(time.current){
+			console.log(performance.now() - time.current) //大概是2.7ms
+		}
+	})
+	return (
+		<div className="App">
+			<h1>n: {n}</h1>
+			<button onClick={onClick}>Click</button>
+		</div>
+	);
+}
+ReactDOM.render(<App1/>, document.getElementById('root'));
