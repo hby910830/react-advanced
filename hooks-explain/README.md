@@ -291,3 +291,34 @@ function App1() {
 }
 ```
 ![image.png](https://upload-images.jianshu.io/upload_images/1181204-00e766551f35e156.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+- 特点
+> useLayoutEffect 总比 useEffect 先执行
+> 
+> useLayoutEffect 里的任务最好影响了 Layout
+
+```
+/* useLayoutEffect比useEffect先执行 */
+function App2() {
+	const [n, setN] = useState(0)
+	const onClick = () => {
+		setN(i => i + 1)
+	}
+	//执行顺序打印出 2、3、1
+	useEffect(() => {
+		console.log(1)
+	})
+	useLayoutEffect(() => {
+		console.log(2)
+	})
+	useLayoutEffect(() => {
+		console.log(3)
+	})
+	return (
+		<div className="App">
+			<h1>n: {n}</h1>
+			<button onClick={onClick}>Click</button>
+		</div>
+	);
+}
+```
