@@ -243,3 +243,12 @@ function ajax(path) {
 > 但我们不一定非要把副作用放在 useEffect 里面
 > 
 > 实际上叫做 afterRender 更好，每次render后执行
+
+- 用途
+> 一、作为 componentDidMount 使用，[ ] 作第二个参数  
+> 
+> 二、作为 componentDidUpdate 使用，可指定依赖
+> 
+> 三、作为 componentWillUnmount 使用，通过 return
+>
+> 四、以上三种用途可同时存在
