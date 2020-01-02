@@ -7,16 +7,19 @@ function App(){
 		setN(i=>i+1)
 	}
 	/*副作用：对环境的改变叫做副作用*/
+	// 作为 componentDidMount 使用，[ ] 作第二个参数
 	useEffect(() => {
 		console.log('第一次渲染执行这句话')
 	}, [])  // [] 里面的变量变化时执行 => 不会执行
+	// 作为 componentDidUpdate 使用，可指定依赖 n
 	useEffect(() => {
 		console.log('n变化时执行这句话')
 	}, [n]) // n 变化时执行
 	useEffect(() => {
 		console.log('任何一个state变化时都会执行')
 	})
-	//组件消灭时 return 一个函数，函数里面写 componentWillUnmount 的操作
+	/*组件消灭时 return 一个函数，函数里面写 componentWillUnmount 的操作*/
+	// 作为 componentWillUnmount 使用，通过 return
 	// useEffect(() => {
 	// 	const id = setInterval(() => {
 	// 		console.log('hi')
