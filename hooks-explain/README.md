@@ -257,3 +257,37 @@ function ajax(path) {
 
 - 特点
 > 如果同时存在多个 useEffect， 会按照出现次序执行
+
+# useLayoutEffect
+- 布局副作用
+> useEffect 在浏览器渲染完成后执行
+>
+> useLayoutEffect 在浏览器渲染前执行
+
+```
+function App1() {
+	const [n, setN] = useState(0)
+	const time = useRef(null)
+	const onClick = () => {
+		setN(i => i + 1)
+		time.current = performance.now()
+	}
+	useLayoutEffect(() => {
+		if (time.current) {
+			console.log(performance.now() - time.current) //大概是0.7ms
+		}
+	})
+	useEffect(() => {
+		if (time.current) {
+			console.log(performance.now() - time.current) //大概是2.7ms
+		}
+	})
+	return (
+		<div className="App">
+			<h1>n: {n}</h1>
+			<button onClick={onClick}>Click</button>
+		</div>
+	);
+}
+```
+![image.png](https://upload-images.jianshu.io/upload_images/1181204-00e766551f35e156.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
