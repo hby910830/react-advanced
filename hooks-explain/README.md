@@ -360,3 +360,5 @@ function Child(props) {
 
 const Child2 = React.memo(Child);
 ```  
+- 但是
+> 这玩意有一个bug
