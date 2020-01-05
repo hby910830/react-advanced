@@ -451,3 +451,9 @@ const Child = React.memo(props => {
 > 这是一个返回函数的函数
 >
 > 是不是很难用？于是就有了useCallback
+
+# useCallback
+- 用法
+> useCallback(x => console.log(x), [m]) 等价于
+> 
+> useMemo( () => x => console.log(x), [m])
