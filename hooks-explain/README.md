@@ -432,3 +432,22 @@ const Child = React.memo(props => {
 		return <div onClick={props.onClick}>child: {props.data}</div>;
 });
 ```
+
+# useMemo
+- 特点
+> 第一个参数是 () => value
+> 
+> 第二个参数是依赖 [m, n]
+> 
+> 只有当依赖变化时，才会计算出新的 value
+> 
+> 如果依赖不变，那么就重用之前的 value 
+>
+> 这不就是 Vue 2的 computed 吗？
+
+- 注意
+> 如果你的 value 是一个函数，那么你就要写成useMemo(() => x => console.log(x))
+> 
+> 这是一个返回函数的函数
+>
+> 是不是很难用？于是就有了useCallback
