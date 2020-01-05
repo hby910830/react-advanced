@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React, {useCallback, useMemo} from "react";
 import ReactDOM from "react-dom";
 
 function App() {
@@ -11,10 +11,17 @@ function App() {
 		setM(m + 1);
 	};
 	const onClickChild = () => {}
-	const onClickChild1 = useMemo(() => {
-		return () => {
-			console.log(`on click child m: ${m}`)
-		}
+
+	//这是一个返回函数的函数
+	// const onClickChild1 = useMemo(() => {
+	// 	return () => {
+	// 		console.log(`on click child m: ${m}`)
+	// 	}
+	// }, [m])
+
+	//可以使用useCallback,这是useMemo的语法糖
+	const onClickChild1 = useCallback( () => {
+		console.log(`on click child m: ${m}`)
 	}, [m])
 	return (
 		<div className="App">
