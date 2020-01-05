@@ -11,6 +11,7 @@ function App() {
 	return (
 		<div className="App">
 			<div>
+				{/*点击button会重新执行Child组件*/}
 				<button onClick={onClick}>update n {n}</button>
 			</div>
 			<Child data={m}/>
