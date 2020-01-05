@@ -359,6 +359,38 @@ function Child(props) {
 }
 
 const Child2 = React.memo(Child);
-```  
+```
 - 但是
 > 这玩意有一个bug
+>
+> 添加了监听函数之后，一秒破功因为 App 运行时，会再次执行 onClickChild，生成新的函数
+>
+> 新旧函数虽然功能一样，但是地址引用不一样！
+```
+function App() {
+	const [n, setN] = React.useState(0);
+	const [m, setM] = React.useState(0);
+	const onClick = () => {
+		setN(n + 1);
+	};
+	const onClickChild = () => {}
+	return (
+		<div className="App">
+			<div>
+				{/*点击button会重新执行Child组件*/}
+				<button onClick={onClick}>update n {n}</button>
+			</div>
+			{/*但是如果传了一个引用，则React.memo无效。因为引用是不相等的*/}
+			<Child data={m} onClick={onClickChild}/>
+		</div>
+	);
+}
+
+//使用React.memo可以解决重新执行Child组件的问题
+const Child = React.memo(props => {
+		console.log("child 执行了");
+		console.log('假设这里有大量代码')
+		return <div onClick={props.onClick}>child: {props.data}</div>;
+});
+```
+> 怎么办？ 用useMemo：
