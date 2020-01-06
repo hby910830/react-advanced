@@ -9,7 +9,12 @@ const useList = () => {
 	}, []) //确保只在第一次运行
 	return {
 		list,
-		setList
+		addItem: name => {
+			setList([...list, {id: Math.random(), name}])
+		},
+		deleteIndex: index => {
+			setList(list.slice(0, index).concat(list.slice(index + 1)))
+		}
 	}
 }
 export default useList
