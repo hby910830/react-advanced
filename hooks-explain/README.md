@@ -568,3 +568,80 @@ function App(){
 }
 ```
 ![image.png](https://upload-images.jianshu.io/upload_images/1181204-00fc7f0b7ac420aa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+> 贴心例子
+
+```
+// useList.js
+import {useState, useEffect} from 'react'
+
+const useList = () => {
+	const [list, setList] = useState(null)
+	useEffect(() => {
+		ajax().then(list => {
+			setList(list)
+		})
+	}, []) //确保只在第一次运行
+	return {
+		list,
+		addItem: name => {
+			setList([...list, {id: Math.random(), name}])
+		},
+		deleteIndex: index => {
+			setList(list.slice(0, index).concat(list.slice(index + 1)))
+		}
+	}
+}
+export default useList
+
+function ajax(){
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve([
+				{id: 1, name: 'Frank'},
+				{id: 2, name: 'Jack'},
+				{id: 3, name: 'Alice'},
+				{id: 4, name: 'Bob'},
+				{id: 5, name: 'Han'}
+			])
+		}, 1000)
+	})
+}
+
+//index.js
+import useList from './hooks/useList'
+
+function App() {
+	const {list, deleteIndex} = useList()
+	return (
+		<div>
+			<h1>List</h1>
+			{
+				list ? (
+					<ol>
+						{
+							list.map((item,index) => {
+								return (
+									<li key={item.id}>
+										{item.name}
+										<button
+											onClick={() => {
+												deleteIndex(index);
+											}}
+										>
+											x
+										</button>
+									</li>
+								)
+							})
+						}
+					</ol>
+				) : (
+					'加载中...'
+				)
+			}
+		</div>
+	)
+}
+```
+![image.png](https://upload-images.jianshu.io/upload_images/1181204-08f490a4e8110c78.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
