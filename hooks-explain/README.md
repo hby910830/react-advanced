@@ -487,3 +487,21 @@ const Button = (props) => {
 	return <button {...props} />
 }
 ```
+> 实现 ref 的传递：由于 props 不包含 ref，所以需要 forwardRef
+
+```
+import React, {forwardRef, useRef} from 'react';
+
+function App(){
+	const buttonRef = useRef(null)
+	return (
+		<div>
+			<Button ref={buttonRef}>按钮</Button2>
+		</div>
+	)
+}
+const Button = forwardRef((props, ref) => {
+	console.log(ref)  //可以拿到ref对button的引用，forwardRef仅限于函数组件，class 组件是默认可以使用 ref 的
+	return <button ref={ref} {...props} />;
+})
+```
