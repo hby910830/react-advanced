@@ -645,3 +645,10 @@ function App() {
 }
 ```
 ![image.png](https://upload-images.jianshu.io/upload_images/1181204-08f490a4e8110c78.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+- 分析
+> 你还可以在自定义 Hook 里使用 Context
+>
+> useState 只说了不能在 if 里，没说不能在函数里运行，只要这个函数在函数组件里运行即可
+>
+> 自定义 Hook 完全可以代替 Redux
