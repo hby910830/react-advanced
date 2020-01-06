@@ -505,3 +505,66 @@ const Button = forwardRef((props, ref) => {
 	return <button ref={ref} {...props} />;
 })
 ```
+
+# 自定义 Hook
+- 封装数据操作
+> 简单例子
+
+```
+// useList.js
+import {useState, useEffect} from 'react'
+
+const useList = () => {
+	const [list, setList] = useState(null)
+	useEffect(() => {
+		ajax().then(list => {
+			setList(list)
+		})
+	}, []) //确保只在第一次运行
+	return {
+		list,
+		setList
+	}
+}
+export default useList
+
+function ajax(){
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve([
+				{id: 1, name: 'Frank'},
+				{id: 2, name: 'Jack'},
+				{id: 3, name: 'Alice'},
+				{id: 4, name: 'Bob'},
+				{id: 5, name: 'Han'}
+			])
+		}, 1000)
+	})
+}
+
+//index.js
+import useList from './hooks/useList'
+
+function App(){
+	const {list, setList} = useList()
+	return (
+		<div>
+			<h1>List</h1>
+			{
+				list ? (
+					<ol>
+						{
+							list.map(item => {
+								return <li key={item.id}>{item.name}</li>
+							})
+						}
+					</ol>
+				):(
+					'加载中...'
+				)
+			}
+		</div>
+	)
+}
+```
+![image.png](https://upload-images.jianshu.io/upload_images/1181204-00fc7f0b7ac420aa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
